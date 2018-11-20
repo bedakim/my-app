@@ -3,8 +3,9 @@ import logo from './logo.svg';
 import './App.css';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
-
 import PostList from './components/PostList';
+import PostDetail from './components/PostDetail';
+import NewPostForm from './components/NewPostForm';
 
 
 // 로그인폼에 회원가입 버튼
@@ -13,27 +14,56 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    // page === 'login' -> 로그인 페이지
+    // page === 'register' -> 회원가입 페이지
+    // page === 'post-list' -> 게시물 목록 페이지
+    // page === 'post-detail' -> 게시물 상세 페이지
+    // page === 'new-post-from' -> 새글 쓰기 페이지
+
     this.state = {
-      page: 'register',
+      page: 'post-list',
+      //현재 보고있는 게시글의 아이디
+      postId: null
     };
   }
 
-  handleResigerPage() {
+  handleRegisterPage() {
     this.setState({
       page: 'register',
     });
   }
 
+  handlePostDetailPage(postId) {
+    this.setState({
+      page: 'post-detail',
+      postId
+    });
+  }
+
+  handleNewPostFormPage(){
+    this.setState({
+      page: 'new-post-form',
+    });
+  }
+
+
   render() {
     return (
       <div className="App">
         {this.state.page === 'login' ? (
-          <LoginForm onRegister={() => this.handleResigerPage()} />
+          <LoginForm onRegister={() => this.handleRegisterPage()} />
         ) : this.state.page === 'register' ? (
           <RegisterForm />
-        ) : this.setState.page === 'post-ist' ?(
-          <PostList /> 
-        ): null }
+        ) : this.state.page === 'post-list' ?(
+          <PostList onPostDetailPage={postId=> this.handlePostDetailPage(postId)}
+                    onNewPostFormPage={()=> this.handleNewPostFormPage()} 
+          /> 
+        ): this.state.page === 'post-detail' ?(
+          <PostDetail postId={this.state.postId} />
+        ) : this.state.page === 'new-post-form' ?(
+          <NewPostForm  onPostDetailPage={postId=> this.handlePostDetailPage(postId)} />
+          ): null
+       }
       </div>
     );
   }

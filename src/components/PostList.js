@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import api from '../api'
 
 
-
-
-
-
 export default class PostList extends Component {
     constructor(props){
         super(props)
@@ -14,23 +10,24 @@ export default class PostList extends Component {
             loading: false
         }
     }
-
    async componentDidMount () {
      const res = await api.get('/posts')
         this.setState({
             posts: res.data
         })
    }
-
-
     render(){
         const {posts} = this.state
+        const {onPostDetailPage, onNewPostFormPage} = this.props
         return(
             <div>
+                <button onClick={()=>onNewPostFormPage()}>Add New Post</button>
                 <h1>게시물 목록1</h1>
                     <ul>
                         {posts.map(post=>(
-                            <li key= {post.id}>{post.title}</li>
+                            <li key= {post.id} onClick={()=> onPostDetailPage(post.id)}>
+                            {post.title} 
+                             </li>
                         ))}
                     </ul>
             </div>

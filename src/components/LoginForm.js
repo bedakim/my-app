@@ -11,7 +11,7 @@ export default class LoginForm extends React.Component {
     async handleSubmit(e){
         e.preventDefault()
         const username = this.usernameRef.current.value
-        const password = e.target.elements.password.value
+        const password = e.target.elements.passwordw.value
         const res = await api.post('/users/login', {
             username,
             password
