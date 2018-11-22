@@ -12,8 +12,7 @@ export default class NewPostForm extends Component {
                 title,
                 body
             })
-                
-                this.props.onPostDetailPage(res.data.id)
+              this.props.onPostDetailPage(res.data.id)
     }
   render() {
     return (
