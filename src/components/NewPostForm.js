@@ -20,3 +20,5 @@ export default class NewPostForm extends Component {
     )
   }
 }
+
+

@@ -8,6 +8,8 @@ import PostList from './components/PostList'
 import PostDetail from './components/PostDetail';
 import NewPostForm from './components/NewPostForm';
 import EditPostForm from './components/EditPostForm';
+import {UserProvider} from './contexts/UserContext'
+
 
 // 로그인 폼에 회원가입 버튼 만들기
 // 회원가입 버튼 클릭하면 회원가입 폼 보여주기
@@ -56,6 +58,7 @@ class App extends Component {
 
   render() {
     return (
+      <UserProvider>
       <div className="App">
         {this.state.page === 'login' ? (
           <LoginForm onRegister={() => this.handleRegisterPage()} />
@@ -74,6 +77,7 @@ class App extends Component {
           <EditPostForm postId={this.state.postId} onPostDetailPage={postId => this.handlePostDetailPage(postId)} />
         ) : null}
       </div>
+      </UserProvider>
     );
   }
 }

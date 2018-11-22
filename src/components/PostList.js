@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import api from '../api'
 import Layout from './Layout'
+import {UserConsumer} from '../contexts/UserContext'
 
 
 export default class PostList extends Component {
@@ -23,6 +24,7 @@ export default class PostList extends Component {
         return(
             <Layout title="게시물 목록">
                 <button onClick={()=>onNewPostFormPage()}>Add New Post</button>
+                
                 <h1>게시물 목록1</h1>
                     <ul>
                         {posts.map(post=>(
