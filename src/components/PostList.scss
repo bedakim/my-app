@@ -1,0 +1,22 @@
+@import '../common.scss';
+
+.PostList{
+  &__title{
+  color: $main-color;
+    
+  &--loading{
+  color: $sub-color;
+    }
+  }
+
+&__list{
+  @include common-border;
+  @include desktop{
+    border-color: teal;
+  }
+}
+
+&__item{
+  color: darkblue;
+}
+}
